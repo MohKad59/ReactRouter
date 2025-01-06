@@ -1,7 +1,6 @@
 import { Form, useLoaderData, redirect, useNavigate } from "react-router-dom";
 import { getContact, updateContact } from "../contacts";
 
-// Loader pour récupérer les détails d'un contact spécifique
 export async function loader({ params }) {
 	const contact = await getContact(params.contactId);
 	if (!contact) {
@@ -13,7 +12,6 @@ export async function loader({ params }) {
 	return { contact };
 }
 
-// Action pour mettre à jour un contact
 export async function action({ request, params }) {
 	const formData = await request.formData();
 	const updates = Object.fromEntries(formData);

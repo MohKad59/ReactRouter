@@ -1,7 +1,6 @@
 import { useLoaderData, Form, useFetcher } from "react-router-dom";
 import { getContact, updateContact } from "../contacts";
 
-// Loader pour récupérer les détails d'un contact spécifique
 export async function loader({ params }) {
 	const contact = await getContact(params.contactId);
 	if (!contact) {
@@ -13,7 +12,6 @@ export async function loader({ params }) {
 	return { contact };
 }
 
-// Action pour mettre à jour le statut "favorite" d'un contact
 export async function action({ request, params }) {
 	const formData = await request.formData();
 	return updateContact(params.contactId, {
@@ -87,7 +85,6 @@ export default function Contact() {
 function Favorite({ contact }) {
 	const fetcher = useFetcher();
 
-	// Gestion optimiste du statut "favorite"
 	const favorite = fetcher.formData
 		? fetcher.formData.get("favorite") === "true"
 		: contact.favorite;
@@ -95,6 +92,7 @@ function Favorite({ contact }) {
 	return (
 		<fetcher.Form method="post">
 			<button
+				type="button"
 				name="favorite"
 				value={favorite ? "false" : "true"}
 				aria-label={favorite ? "Remove from favorites" : "Add to favorites"}

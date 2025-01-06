@@ -9,7 +9,6 @@ import {
 import { useEffect } from "react";
 import { getContacts, createContact } from "../contacts";
 
-// Loader pour récupérer les contacts en fonction de la requête de recherche
 export async function loader({ request }) {
 	const url = new URL(request.url);
 	const q = url.searchParams.get("q");
@@ -17,7 +16,6 @@ export async function loader({ request }) {
 	return { contacts, q };
 }
 
-// Action pour créer un nouveau contact
 export async function action() {
 	const contact = await createContact();
 	return redirect(`/contacts/${contact.id}/edit`);
@@ -41,6 +39,7 @@ export default function Root() {
 			<div id="sidebar">
 				<h1>React Router Contacts</h1>
 				<div>
+					{/* biome-ignore lint/a11y/useSemanticElements: <explanation> */}
 					<Form id="search-form" role="search">
 						<input
 							id="q"
@@ -57,8 +56,8 @@ export default function Root() {
 								});
 							}}
 						/>
-						<div id="search-spinner" aria-hidden hidden={!searching}></div>
-						<div className="sr-only" aria-live="polite"></div>
+						<div id="search-spinner" aria-hidden hidden={!searching} />
+						<div className="sr-only" aria-live="polite" />
 					</Form>
 					<Form method="post">
 						<button type="submit">New</button>

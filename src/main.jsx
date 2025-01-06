@@ -3,7 +3,6 @@ import * as ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 
-// Import des composants et loaders/actions
 import Root, {
 	loader as rootLoader,
 	action as rootAction,
@@ -17,7 +16,6 @@ import Contact, {
 import EditContact, { action as editAction } from "./routes/edit";
 import { action as destroyAction } from "./routes/destroy";
 
-// Définition des routes
 const router = createBrowserRouter([
 	{
 		path: "/",
@@ -49,7 +47,6 @@ const router = createBrowserRouter([
 	},
 ]);
 
-// Rendu de l'application
 ReactDOM.createRoot(document.getElementById("root")).render(
 	<React.StrictMode>
 		<RouterProvider router={router} />
